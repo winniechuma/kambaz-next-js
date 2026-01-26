@@ -1,7 +1,13 @@
 import Link from "next/link";
+/**
+ * Winnie Chuma
+ */
 export default function labs() {
  return (
    <div id="wd-labs">
+    <h3> Winnie Chuma</h3>
+    <Link href="https://github.com/winniechuma/kambaz-next-js" id="wd-github">
+        GitHub Repo</Link>
      <h1>Labs</h1>
      <ul>
        <li>
