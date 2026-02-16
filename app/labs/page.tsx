@@ -5,7 +5,7 @@ import Link from "next/link";
 export default function labs() {
  return (
    <div id="wd-labs">
-    <h3> Winnie Chuma</h3>
+    <h3> Winnie Chuma (Online Section)</h3>
     <Link href="https://github.com/winniechuma/kambaz-next-js" id="wd-github">
         GitHub Repo</Link>
      <h1>Labs</h1>
