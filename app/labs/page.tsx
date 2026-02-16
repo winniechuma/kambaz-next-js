@@ -6,7 +6,7 @@ export default function labs() {
  return (
    <div id="wd-labs">
     <h3> Winnie Chuma (Online Section)</h3>
-    <Link href="https://github.com/winniechuma/kambaz-next-js" id="wd-github">
+    <Link href="https://github.com/winniechuma/kambaz-next-js/tree/a2" id="wd-github">
         GitHub Repo</Link>
      <h1>Labs</h1>
      <ul>
