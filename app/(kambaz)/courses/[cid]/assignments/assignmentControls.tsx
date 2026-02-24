@@ -4,11 +4,6 @@ import GreenCheckmark from "./GreenCheckmark";
 import { BsSearch } from "react-icons/bs";
 import InputGroupText from "react-bootstrap/esm/InputGroupText";
 export default function AssignmentControls() {
-
-    //    <input placeholder="Search for Assignments"
-//           id="wd-search-assignment" />
-//    <button id="wd-add-assignment-group">+ Group</button>
-//    <button id="wd-add-assignment">+ Assignment</button>
  return (
    <div className="d-flex justify-content-between align-items-center mb-3 text-nowrap">
     {/* Search Bar */}

@@ -1,10 +1,16 @@
+"use client"
+import { useParams } from "next/navigation";
 import { Button, FormControl, FormLabel, FormSelect, FormCheck, Card } from "react-bootstrap";
+import * as db from "../../../../database";
 
 export default function AssignmentEditor() {
+  const { cid, aid } = useParams();
+  const assignments = db.assignments;
+  const assignment = assignments.find((assignment) => assignment._id === aid);
   return (
     <div id="wd-assignments-editor" className="p-4">
       <FormLabel htmlFor="wd-name">Assignment Name</FormLabel>
-      <FormControl id="wd-name" defaultValue="A1" className="mb-3" />
+      <FormControl id="wd-name" defaultValue={assignment?.title} className="mb-3" />
 
       <Card body className="mb-3">
         <p>
@@ -118,8 +124,8 @@ export default function AssignmentEditor() {
       <hr />
       
       <div className="d-flex justify-content-end gap-2">
-        <Button variant="secondary">Cancel</Button>
-        <Button variant="danger">Save</Button>
+        <Button href={`/courses/${cid}/assignments`} variant="secondary">Cancel</Button>
+        <Button href={`/courses/${cid}/assignments`} variant="danger">Save</Button>
       </div>
     </div>
   );
