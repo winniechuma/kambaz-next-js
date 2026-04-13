@@ -1,3 +1,4 @@
+"use client";
 import Link from "next/link";
 import AssignmentControls from "./assignmentControls";
 import * as db from "../../../database";
