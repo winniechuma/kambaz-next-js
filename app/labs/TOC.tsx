@@ -1,30 +1,11 @@
+"use client";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+
+import { Nav, NavItem, NavLink } from "react-bootstrap";
 export default function TOC() {
+  const pathname = usePathname();
  return (
-<<<<<<< Updated upstream
-   <ul>
-     <li>
-       <Link href="/labs" id="wd-home-link">
-         Home </Link>
-     </li>
-     <li>
-       <Link href="/labs/lab1" id="wd-lab1-link">
-         Lab 1 </Link>
-     </li>
-     <li>
-       <Link href="/labs/lab2" id="wd-lab2-link">
-         Lab 2 </Link>
-     </li>
-     <li>
-       <Link href="/labs/lab3" id="wd-lab3-link">
-         Lab 3 </Link>
-     </li>
-     <li>
-       <Link href="/" id="wd-kambaz-link">
-         Kambaz </Link>
-     </li>
-   </ul>
-=======
    <Nav variant="pills">
      <NavItem>
        <NavLink href="/labs" as={Link} className={`nav-link ${pathname.endsWith("labs") ? "active" : ""}`}>
@@ -53,5 +34,4 @@ export default function TOC() {
        <NavLink href="https://github.com/winniechuma">My GitHub</NavLink>
      </NavItem>
    </Nav>
->>>>>>> Stashed changes
 );}

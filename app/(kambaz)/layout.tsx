@@ -1,18 +1,7 @@
 "use client";
 import { ReactNode } from "react";
 import KambazNavigation from "./Navigation";
-<<<<<<< Updated upstream
-export default function KambazLayout({ children }: Readonly<{ children: ReactNode }>) {
- return (
-   <table>
-     <tbody>
-       <tr>
-         <td valign="top" width="200">  <KambazNavigation /> </td>
-         <td valign="top" width="100%"> {children}           </td>
-       </tr>
-     </tbody>
-   </table>
-=======
+import "bootstrap/dist/css/bootstrap.min.css";
 import "./styles.css";
 import { Provider } from "react-redux";
 import store from "./store";
@@ -30,5 +19,4 @@ export default function KambazLayout({ children }: Readonly<{ children: ReactNod
   </div>
 </div>
 </Provider>
->>>>>>> Stashed changes
 );}

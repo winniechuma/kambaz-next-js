@@ -1,54 +1,4 @@
 import Link from "next/link";
-<<<<<<< Updated upstream
-
-export default function Assignments() {
- return (
-  <div id="wd-assignments">
-   <input placeholder="Search for Assignments"
-          id="wd-search-assignment" />
-   <button id="wd-add-assignment-group">+ Group</button>
-   <button id="wd-add-assignment">+ Assignment</button>
-   <h3 id="wd-assignments-title">
-    ASSIGNMENTS 40% of Total <button>+</button> </h3>
-   <ul id="wd-assignment-list">
-    <li className="wd-assignment-list-item">
-     <Link href="/courses/1234/assignments/123"
-           className="wd-assignment-link" >
-      A1 - ENV + HTML
-     </Link> 
-    <div>
-    Multiple Modules | <b>Not available until</b> May 6 at 12:00am |
-    <br />
-    <b>Due</b> May 13 at 11:59pm | 100 pts
-  </div>
-     </li>
-    <li className="wd-assignment-list-item">
-      {/* Complete On Your Own */}
-      <Link href="/courses/1234/assignments/123"
-           className="wd-assignment-link" >
-      A2 - CSS + BOOTSTRAP
-     </Link>
-     <div>
-     Multiple Modules | <b>Not available until</b> May 13 at 12:00am |
-     <br />
-    <b>Due</b> May 20 at 11:59pm | 100 pts
-    </div>
-    </li>
-     <li className="wd-assignment-list-item">
-      <Link href="/courses/1234/assignments/123"
-           className="wd-assignment-link" >
-      A3 -JAVASCRIPT + REACT
-     </Link>
-     <div> 
-     Multiple Modules | <b>Not available until</b> May 20 at 12:00am |
-     <br />
-    <b>Due</b> May 27 at 11:59pm | 100 pts
-    </div>
-    </li>
-   </ul>
-  </div>
-);}
-=======
 import AssignmentControls from "./assignmentControls";
 import * as db from "../../../database";
 import { useParams } from "next/navigation";
@@ -58,6 +8,11 @@ import { RootState } from "@/app/(kambaz)/store";
 import { addAssignment, editAssignment, updateAssignment, deleteAssignment }
   from "./reducer";
 import AssignmentControlButtons from "./assignmentControlButtons";
+import { ListGroup, ListGroupItem } from "react-bootstrap";
+import { BsGripVertical, BsThreeDotsVertical } from "react-icons/bs";
+import { RxTriangleDown } from "react-icons/rx";
+import { FaPlus } from "react-icons/fa";
+import { TiEdit } from "react-icons/ti";
 
 export default function Assignments() {
   const { cid } = useParams();
@@ -127,4 +82,3 @@ export default function Assignments() {
            </ListGroup>
            </div>
   )};
->>>>>>> Stashed changes

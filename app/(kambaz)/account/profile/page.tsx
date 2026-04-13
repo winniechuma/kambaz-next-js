@@ -1,6 +1,3 @@
-<<<<<<< Updated upstream
-import Link from "next/link";
-=======
 "use client";
 import { useEffect, useState } from "react";
 import { Button, FormControl, FormSelect } from "react-bootstrap";
@@ -8,7 +5,6 @@ import { setCurrentUser } from "../reducer";
 import { redirect } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store";
->>>>>>> Stashed changes
 export default function Profile() {
    const [profile, setProfile] = useState<any>({});
  const dispatch = useDispatch();
@@ -28,20 +24,6 @@ export default function Profile() {
   return (
     <div id="wd-profile-screen">
       <h3>Profile</h3>
-<<<<<<< Updated upstream
-      <input defaultValue="alice" placeholder="username" className="wd-username"/><br/>
-      <input defaultValue="123"   placeholder="password" type="password"
-             className="wd-password" /><br/>
-      <input defaultValue="Alice" placeholder="First Name" id="wd-firstname" /><br/>
-      <input defaultValue="Wonderland" placeholder="Last Name" id="wd-lastname" /><br/>
-      <input defaultValue="2000-01-01" type="date" id="wd-dob" /><br/>
-      <input defaultValue="alice@wonderland" type="email" id="wd-email" /><br/>
-      <select defaultValue="FACULTY" id="wd-role">
-        <option value="USER">User</option>       <option value="ADMIN">Admin</option>
-        <option value="FACULTY">Faculty</option> <option value="STUDENT">Student</option>
-      </select><br/>
-      <Link href="signin" > Sign out </Link>
-=======
       {profile && (
         <div>
       
@@ -66,7 +48,6 @@ export default function Profile() {
         <option value="STUDENT">Student</option>
       </FormSelect><br/>
       <Button onClick={signout}  id="wd-signout-btn" className="w-100 mb-2"> Sign out </Button>
->>>>>>> Stashed changes
     </div>
       )}
       </div>
