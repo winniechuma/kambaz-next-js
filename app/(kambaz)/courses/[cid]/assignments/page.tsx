@@ -1,10 +1,8 @@
 "use client";
 import Link from "next/link";
 import AssignmentControls from "./assignmentControls";
-import * as db from "../../../database";
 import { useParams } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
-import { useState } from "react";
 import { RootState } from "@/app/(kambaz)/store";
 import { addAssignment, editAssignment, updateAssignment, deleteAssignment }
   from "./reducer";
