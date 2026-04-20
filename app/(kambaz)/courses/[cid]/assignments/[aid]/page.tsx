@@ -4,7 +4,8 @@ import { useState } from "react";
 import { Button, FormControl, FormLabel, FormSelect, FormCheck, Card } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "@/app/(kambaz)/store";
-import { addAssignment, updateAssignment } from "../reducer";
+import {setAssignments } from "../reducer";
+import * as client from "../client";
 
 export default function AssignmentEditor() {
   const { cid, aid } = useParams();
@@ -22,32 +23,37 @@ export default function AssignmentEditor() {
   const [availableFromDate, setAvailableFromDate] = useState(existingAssignment?.availableFromDate || "");
   const [availableUntilDate, setAvailableUntilDate] = useState(existingAssignment?.availableUntilDate || "");
   
-  const handleSave = () => {
+  const handleSave = async () => {
     if (isNew) {
-      dispatch(
-        addAssignment({
-          title,
-          description,
-          points,
-          dueDate,
-          availableFromDate,
-          availableUntilDate,
-          course: cid,
-        })
-      );
+      const newAssignment = await client.createAssignment(cid as string, {
+      title,
+      description,
+      points,
+      dueDate,
+      availableFromDate,
+      availableUntilDate,
+      course: cid,
+    });
+    dispatch(setAssignments(
+      [...assignments, newAssignment]
+    ));
+    
     } else {
-      dispatch(
-        updateAssignment({
-          ...existingAssignment,
-          title,
-          description,
-          points,
-          dueDate,
-          availableFromDate,
-          availableUntilDate,
-        })
-      );
-    }
+    const updatedAssignment = {
+      ...existingAssignment,
+      title,
+      description,
+      points,
+      dueDate,
+      availableFromDate,
+      availableUntilDate,
+    };
+    await client.updateAssignment(updatedAssignment);
+    dispatch(setAssignments(assignments.map((a: any) =>
+      a._id === aid ? updatedAssignment : a
+    )));
+  }
+
     router.push(`/courses/${cid}/assignments`);
   };
 

@@ -4,7 +4,7 @@ import AssignmentControls from "./assignmentControls";
 import { useParams } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/app/(kambaz)/store";
-import { addAssignment, editAssignment, updateAssignment, deleteAssignment }
+import {setAssignments, editAssignment }
   from "./reducer";
 import AssignmentControlButtons from "./assignmentControlButtons";
 import { ListGroup, ListGroupItem } from "react-bootstrap";
@@ -12,15 +12,47 @@ import { BsGripVertical, BsThreeDotsVertical } from "react-icons/bs";
 import { RxTriangleDown } from "react-icons/rx";
 import { FaPlus } from "react-icons/fa";
 import { TiEdit } from "react-icons/ti";
+import * as client from "./client";
+import { useEffect } from "react";
 
 export default function Assignments() {
   const { cid } = useParams();
 
   const {assignments} = useSelector((state: RootState) => state.assignmentsReducer);
   const dispatch = useDispatch();
+
+  // const[moduleName, setModuleName] = useState("");
+  const onUpdateAssignment = async (assignment: any) => {
+      await client.updateAssignment(assignment);
+      const newAssignments = assignments.map((m: any) => m._id === assignment._id ? assignment : m );
+      dispatch(setAssignments(newAssignments));
+    };
+
+
+      const onRemoveAssignment = async (assignmentId: string) => {
+      await client.deleteAssignment(assignmentId);
+      dispatch(setAssignments(assignments.filter((m: any) => m._id !== assignmentId)));
+    };
+  
+    const fetchAssignments = async () => {
+      const assignments = await client.findAssignmentsForCourse(cid as string);
+      dispatch(setAssignments(assignments));
+    };
+    useEffect(() => {
+      fetchAssignments();
+    }, []);
+
+    const onCreateAssignment = async (assignment: any) => {
+    if (!cid) return;
+    const newAssignment = await client.createAssignment(cid as string, assignment);
+    dispatch(setAssignments([...assignments, newAssignment]));
+  };
+
+  
   return (
     <div>
       <AssignmentControls 
+      // addAssignment={onCreateAssignment} 
       // setAssignmentName={setAssignmentName} assignmentName={assignmentName}
       // addAssignment = {() => {
       //   dispatch(addAssignment({title: assignmentName, course: cid}));
@@ -28,12 +60,7 @@ export default function Assignments() {
       // }} 
       />
       <br /><br /><br /><br />
-     
-      {/* <ModulesControls setModuleName={setModuleName} moduleName={moduleName} 
-        addModule={() => {
-          dispatch(addModule({name: moduleName, course: cid}));
-        setModuleName("");
-        }} /><br /><br /><br /><br /> */}
+    
 
       
       <ListGroup className="rounded-0" id="wd-assignments">
@@ -51,7 +78,7 @@ export default function Assignments() {
 
           <ListGroup className="wd-assignment-list rounded-0">
            {assignments
-           .filter ((assignment: any) => assignment.course === cid)
+          //  .filter ((assignment: any) => assignment.course === cid)
            .map ((assignment: any) => (
             <ListGroupItem key={assignment._id} className="wd-lesson p-3 ps-1">
               <div className="d-flex justify-content-between align-items-start">
@@ -69,7 +96,8 @@ export default function Assignments() {
                 </div>
                  <AssignmentControlButtons
                       assignmentId={assignment._id}
-                      deleteAssignment={(id) => dispatch(deleteAssignment(id))}
+                      deleteAssignment={(id) => onRemoveAssignment(id)}
+                        // dispatch(deleteAssignment(id))}
                       editAssignment={(id) => dispatch(editAssignment(id))} />
                 {/* <div>
                   <FaCheckCircle className="text-success me-2" />
