@@ -9,16 +9,15 @@ export default function AccountNavigation() {
   const links = currentUser ? ["profile"]:["signin", "signup"];
   const pathname = usePathname();
   return (
-  //  <div id="wd-account-navigation" className="wd list-group fs-5 rounded-0">
-  //    <Link href="signin" className="list-group-item active border-0"> Signin </Link><br />
-  //    <Link href="signup" className="list-group-item text-danger border-0"> Signup </Link><br />
-  //    <Link href="profile" className="list-group-item text-danger border-0"> Profile </Link>
-  //  </div>
    <Nav variant="pills">
      {links.map((link) => (
        <NavItem key={link}>
          <NavLink as={Link} href={link} active={pathname.endsWith(link)}>
            {link} </NavLink> </NavItem>
      ))}
+
+     {currentUser && currentUser.role === "ADMIN" && (
+       <NavLink as={Link} href={`/account/users`}  active={pathname.endsWith('Users')}> Users </NavLink> )}
+
    </Nav>
 );}
