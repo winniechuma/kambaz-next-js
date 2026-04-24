@@ -11,6 +11,7 @@ export default function Session({ children }: { children: any }) {
       dispatch(setCurrentUser(currentUser));
     } catch (err: any) {
       console.error(err);
+      dispatch(setCurrentUser(null));
     }
     setPending(false);
   };
