@@ -2,6 +2,7 @@ import axios from "axios";
 const axiosWithCredentials = axios.create({ withCredentials: true });
 
 export const HTTP_SERVER = process.env.NEXT_PUBLIC_HTTP_SERVER;
+console.log("HTTP_SERVER:", HTTP_SERVER);
 export const USERS_API = `${HTTP_SERVER}/api/users`;
 
 export const findAllUsers = async () => {
